@@ -12,6 +12,7 @@ class TaskListItem extends StatelessWidget {
         children: const [
           TitleWidget('Title 1'),
           TitleWidget('Title 2'),
+          TitleWidget('Title 2'),
         ],
       ),
     );
