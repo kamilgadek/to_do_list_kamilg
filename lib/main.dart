@@ -6,6 +6,7 @@ void main() {
   runApp(const MyApp());
 }
 
+/// TODO(kamil): name it App class and move it to separate folder (under lib)
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -22,5 +23,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
