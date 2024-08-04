@@ -10,9 +10,9 @@ class TasksPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('To Do List'),
+        title: const Text('To Do List'),
       ),
-      body: TaskListItem(),
+      body: const TaskListItem(),
       
     );
   }

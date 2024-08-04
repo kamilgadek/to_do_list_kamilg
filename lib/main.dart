@@ -1,25 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list_kamilg/app/app.dart';
 
-import 'feature/view/tasks_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const App());
 }
 
 /// TODO(kamil): name it App class and move it to separate folder (under lib)
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'To Do List',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: TasksPage(),
-    );
-  }
-}
