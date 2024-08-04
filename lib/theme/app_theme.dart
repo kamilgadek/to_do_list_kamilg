@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
- static ColorScheme lightColorScheme = ColorScheme.light();
- static ColorScheme darkColorScheme = ColorScheme.dark();
+ static ColorScheme lightColorScheme = const ColorScheme.light();
+ static ColorScheme darkColorScheme = const ColorScheme.dark();
 }
