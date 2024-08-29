@@ -19,5 +19,10 @@ class TasksDevData {
       description: 'Go to the gym',
       isDone: false,
     ),
+    Task(
+      title: 'Task 4',
+      description: 'Learn git',
+      isDone: false,
+    ),
   ];
 }
