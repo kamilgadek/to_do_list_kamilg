@@ -7,7 +7,7 @@ class TasksDevData {
     Task(
       title: 'Task 1',
       description: 'Lear Flutter',
-      isDone: false,
+      isDone: true,
     ),
     Task(
       title: 'Task 2',
