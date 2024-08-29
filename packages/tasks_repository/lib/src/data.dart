@@ -19,5 +19,5 @@ class TasksDevData {
       description: 'Go to the gym',
       isDone: false,
     ),
-  ];
+    ];
 }
