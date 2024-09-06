@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list_kamilg/feature/view/tasks_page.dart';
+import 'package:to_do_list_kamilg/home/view/tasks_page.dart';
 
 /// TODO(kamil): create App class here and use it in main.dart 
 
