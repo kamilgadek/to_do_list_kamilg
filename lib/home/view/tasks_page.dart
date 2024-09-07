@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tasks_repository/tasks_repository.dart';
-import 'package:to_do_list_kamilg/home/widgets/task_list.dart';
+import 'package:to_do_list_kamilg/home/widgets/task_card.dart';
+import 'package:tasks_repository/src/data.dart';
+
 
 class TasksPage extends StatelessWidget {
   const TasksPage({
@@ -14,10 +15,13 @@ class TasksPage extends StatelessWidget {
         title: const Text('To Do List'),
       ),
       body: Center(
-        child: TaskCard( task: Task('Lers Flutter', true),
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          height: 200,
+          width: 400,
+          child: TaskCard(task: TasksDevData.tasks[0]),
+          ),
         ),
-      ),
-      
-    );
+      );
   }
 }
