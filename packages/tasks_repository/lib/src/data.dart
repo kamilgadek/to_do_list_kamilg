@@ -6,7 +6,7 @@ import 'models/task.dart';
 /// TODO: Remove it later as it's for dev purposes only.
 class TasksDevData {
   static List<Task> tasks = [
-    Task('Lers Flutter', true),
+    Task('Lern Flutter', true),
     Task('Clean room', false),
     Task('Go to the gym', true),
   ];
