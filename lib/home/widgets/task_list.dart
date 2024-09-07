@@ -1,25 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:tasks_repository/tasks_repository.dart';
+
 
 class TaskCard extends StatelessWidget {
   const TaskCard(
-    this.task,
-    {
-    super.key,
+     {
+    super.key, required this.task,
   });
 
-  final String task;
+  final Task task;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-      color: Colors.amber,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.amber,
       ),
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.all(10),
-      child: Text(
-        task,
+      child: Column(
+        children: [
+          Text(
+            task.description,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 10,),
+          Text(
+            task.isDone ? "Completed" : "Incomplete", 
+            style: TextStyle(
+              fontSize: 16,
+              color: task.isDone ? Colors.green : Colors.red,
+            ),
+          ),
+        ],
       ),
     );
   }
 }
+

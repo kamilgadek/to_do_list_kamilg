@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list_kamilg/home/view/task_list_item.dart';
+import 'package:tasks_repository/tasks_repository.dart';
+import 'package:to_do_list_kamilg/home/widgets/task_list.dart';
 
 class TasksPage extends StatelessWidget {
   const TasksPage({
@@ -12,7 +13,10 @@ class TasksPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('To Do List'),
       ),
-      body: const TaskListItem(),
+      body: Center(
+        child: TaskCard( task: Task('Lers Flutter', true),
+        ),
+      ),
       
     );
   }
