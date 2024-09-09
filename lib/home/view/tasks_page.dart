@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:to_do_list_kamilg/home/widgets/task_card.dart';
 import 'package:tasks_repository/src/data.dart';
 
+/// TODO(kamil): for dev purposes only
 
 class TasksPage extends StatelessWidget {
   const TasksPage({
