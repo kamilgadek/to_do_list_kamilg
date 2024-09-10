@@ -1,5 +1,3 @@
-
-
 import 'models/task.dart';
 
 /// This is a development-only list of tasks.
