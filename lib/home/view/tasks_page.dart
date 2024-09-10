@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tasks_repository/tasks_repository.dart';
 import 'package:to_do_list_kamilg/home/home.dart';
 
-
 class TasksPage extends StatelessWidget {
   const TasksPage({
     super.key,
@@ -19,10 +18,12 @@ class TasksPage extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           height: 200,
           width: 400,
+          child: TaskCard(
           /// TODO(kamil): for dev purposes only
-          child: TaskCard(task: TasksDevData.tasks[0]),
+            task: TasksDevData.tasks.first,
           ),
         ),
-      );
+      ),
+    );
   }
 }
