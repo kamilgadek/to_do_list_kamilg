@@ -7,5 +7,11 @@ class TasksDevData {
     Task('Learn Flutter', true),
     Task('Clean room', false),
     Task('Go to the gym', true),
+    Task('Learn Flutter', true),
+    Task('Clean room', false),
+    Task('Go to the gym', true),
+    Task('Learn Flutter', true),
+    Task('Clean room', false),
+    Task('Go to the gym', true),
   ];
 }

@@ -9,20 +9,19 @@ class TasksPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tasks = TasksDevData.tasks;
     return Scaffold(
       appBar: AppBar(
         title: const Text('To Do List'),
       ),
-      body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          height: 200,
-          width: 400,
-          child: TaskCard(
-          /// TODO(kamil): for dev purposes only
-            task: TasksDevData.tasks.first,
-          ),
-        ),
+      body: ListView.builder(
+        itemCount: TasksDevData.tasks.length,
+        itemBuilder: (context, index) {
+          final task = tasks[index];
+          return TaskCard(
+            task: task,
+          );
+        },
       ),
     );
   }
