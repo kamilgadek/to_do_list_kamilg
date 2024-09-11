@@ -13,16 +13,14 @@ class TasksPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('To Do List'),
       ),
-      body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          height: 200,
-          width: 400,
-          child: TaskCard(
-          /// TODO(kamil): for dev purposes only
-            task: TasksDevData.tasks.first,
-          ),
-        ),
+      body: ListView.builder(
+        itemCount: TasksDevData.tasks.length,
+        itemBuilder: (context, index) {
+          final task = TasksDevData.tasks[index];
+          return TaskCard(
+            task: task,
+          );
+        },
       ),
     );
   }
