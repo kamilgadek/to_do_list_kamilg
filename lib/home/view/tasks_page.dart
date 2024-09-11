@@ -9,6 +9,7 @@ class TasksPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tasks = TasksDevData.tasks;
     return Scaffold(
       appBar: AppBar(
         title: const Text('To Do List'),
@@ -16,7 +17,7 @@ class TasksPage extends StatelessWidget {
       body: ListView.builder(
         itemCount: TasksDevData.tasks.length,
         itemBuilder: (context, index) {
-          final task = TasksDevData.tasks[index];
+          final task = tasks[index];
           return TaskCard(
             task: task,
           );
