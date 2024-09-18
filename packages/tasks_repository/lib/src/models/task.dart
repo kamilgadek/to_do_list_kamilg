@@ -2,5 +2,5 @@ class Task {
   String description;
   bool isDone;
 
-  Task(this.description, this.isDone);
+  Task({required this.description, required this.isDone});
 }
