@@ -24,7 +24,7 @@ class TasksPage extends StatelessWidget {
           );
         },
       ),
-      floatingActionButton: const floatingActionButtonView(),
+      floatingActionButton: const FloatingActionButtonView(),
     );
   }
 }

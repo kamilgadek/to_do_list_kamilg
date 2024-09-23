@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class floatingActionButtonView extends StatelessWidget {
-  const floatingActionButtonView({
+class FloatingActionButtonView extends StatelessWidget {
+  const FloatingActionButtonView({
     super.key,
   });
 
