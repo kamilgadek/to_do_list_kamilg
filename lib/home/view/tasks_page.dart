@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_repository/tasks_repository.dart';
 import 'package:to_do_list_kamilg/home/home.dart';
-import 'package:to_do_list_kamilg/home/widgets/fab_view.dart';
 
 class TasksPage extends StatelessWidget {
   const TasksPage({
@@ -24,8 +23,10 @@ class TasksPage extends StatelessWidget {
           );
         },
       ),
-      floatingActionButton: const FloatingActionButtonView(),
+      floatingActionButton: IconButton(
+        onPressed: () {},
+        icon: const Icon(Icons.add),
+      ),
     );
   }
 }
-
