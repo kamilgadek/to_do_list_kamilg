@@ -23,7 +23,7 @@ class TasksPage extends StatelessWidget {
           );
         },
       ),
-      floatingActionButton: IconButton(
+    floatingActionButton: IconButton(
         onPressed: () {},
         icon: const Icon(Icons.add),
       ),
