@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_repository/tasks_repository.dart';
 import 'package:to_do_list_kamilg/home/home.dart';
-
+import 'package:app_ui/src/dialogs/bottom_animated_dialog.dart';
 class TasksPage extends StatelessWidget {
   const TasksPage({
     super.key,
@@ -24,7 +24,9 @@ class TasksPage extends StatelessWidget {
         },
       ),
       floatingActionButton: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          BottomAnimatedDialog.show(context, child: Text(''));
+        },
         icon: const Icon(Icons.add),
       ),
     );
