@@ -23,10 +23,8 @@ class TasksPage extends StatelessWidget {
           );
         },
       ),
-    floatingActionButton: IconButton(
-        onPressed: () {
-          BottomAnimatedDialog.show(context, child: Text('data'));
-        },
+      floatingActionButton: IconButton(
+        onPressed: () {},
         icon: const Icon(Icons.add),
       ),
     );
