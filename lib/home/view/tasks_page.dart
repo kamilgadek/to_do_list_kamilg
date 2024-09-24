@@ -24,7 +24,9 @@ class TasksPage extends StatelessWidget {
         },
       ),
     floatingActionButton: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          BottomAnimatedDialog.show(context, child: Text('data'));
+        },
         icon: const Icon(Icons.add),
       ),
     );
