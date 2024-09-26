@@ -1,6 +1,7 @@
 import 'package:app_ui/src/colors/app_colors.dart';
 import 'package:app_ui/src/const/app_ui_const.dart';
 import 'package:app_ui/src/sizes/app_sizes.dart';
+import 'package:app_ui/src/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class BottomAnimatedDialog {
@@ -8,7 +9,7 @@ class BottomAnimatedDialog {
     showGeneralDialog(
       barrierLabel: 'BottomAnimatedDialog',
       barrierDismissible: true,
-      barrierColor: Colors.black.withOpacity(0.5),
+      barrierColor: AppTheme.barrierColor,
       transitionDuration: AppUiConst.dialogAnimationDuration,
       context: context,
       pageBuilder: (context, anim1, anim2) {
