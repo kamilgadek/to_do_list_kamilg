@@ -1,3 +1,4 @@
+import 'package:app_ui/src/sizes/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 class BottomAnimatedDialog {
@@ -12,9 +13,13 @@ class BottomAnimatedDialog {
         return Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            height: 300,
+            height: AppSizes.s300,
             width: double.infinity,
-            margin: EdgeInsets.only(bottom: 20, left: 12, right: 12),
+            margin: const EdgeInsets.only(
+              bottom: AppSizes.s20,
+              left: AppSizes.s12,
+              right: AppSizes.s12,
+            ),
             child: child,
             decoration: BoxDecoration(
               color: Colors.white,
