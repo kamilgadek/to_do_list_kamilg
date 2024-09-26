@@ -1,3 +1,4 @@
+import 'package:app_ui/src/colors/app_colors.dart';
 import 'package:app_ui/src/const/app_ui_const.dart';
 import 'package:app_ui/src/sizes/app_sizes.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class BottomAnimatedDialog {
             ),
             child: child,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.white,
               borderRadius: BorderRadius.circular(40),
             ),
           ),
