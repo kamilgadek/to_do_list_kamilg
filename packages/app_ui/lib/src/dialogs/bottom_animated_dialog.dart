@@ -1,3 +1,4 @@
+import 'package:app_ui/src/const/app_ui_const.dart';
 import 'package:app_ui/src/sizes/app_sizes.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,7 @@ class BottomAnimatedDialog {
       barrierLabel: 'BottomAnimatedDialog',
       barrierDismissible: true,
       barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: const Duration(milliseconds: 500),
+      transitionDuration: AppUiConst.dialogAnimationDuration,
       context: context,
       pageBuilder: (context, anim1, anim2) {
         return Align(
