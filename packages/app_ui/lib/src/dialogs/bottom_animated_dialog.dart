@@ -18,11 +18,6 @@ class BottomAnimatedDialog {
           child: Container(
             height: AppSizes.s300,
             width: double.infinity,
-            margin: const EdgeInsets.only(
-              bottom: AppSizes.s20,
-              left: AppSizes.s12,
-              right: AppSizes.s12,
-            ),
             child: child,
             decoration: BoxDecoration(
               color: AppColors.white,
