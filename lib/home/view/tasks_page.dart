@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_repository/tasks_repository.dart';
 import 'package:to_do_list_kamilg/home/home.dart';
-import 'package:app_ui/src/dialogs/bottom_animated_dialog.dart';
+import 'package:app_ui/app_ui.dart';
 class TasksPage extends StatelessWidget {
   const TasksPage({
     super.key,
