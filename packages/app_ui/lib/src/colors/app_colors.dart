@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 class AppColors {
-  static const Color blue= Color.fromARGB(0, 111, 119, 239);
-  static const Color yellow = Color.fromARGB(0, 241, 241, 20);
-  static const Color white = Color.fromARGB(255, 255, 255, 255);
+  static const Color blue= Color(0xFF6F77EF);
+  static const Color yellow = Color(0xFFF1F114);
+  static const Color white = Color(0xFFFFFFFF);
 }
