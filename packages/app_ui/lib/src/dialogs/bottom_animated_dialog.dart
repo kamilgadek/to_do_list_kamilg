@@ -16,9 +16,13 @@ class BottomAnimatedDialog {
         return Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            height: AppSizes.s300,
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height,
+            ),
             width: double.infinity,
+            child: SingleChildScrollView(
             child: child,
+            ),
             decoration: BoxDecoration(
               color: AppColors.white,
               borderRadius: BorderRadius.circular(40),
