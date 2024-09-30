@@ -1,7 +1,5 @@
 import 'package:app_ui/src/colors/app_colors.dart';
 import 'package:app_ui/src/const/app_ui_const.dart';
-import 'package:app_ui/src/sizes/app_sizes.dart';
-import 'package:app_ui/src/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class BottomAnimatedDialog {
@@ -9,7 +7,7 @@ class BottomAnimatedDialog {
     showGeneralDialog(
       barrierLabel: 'BottomAnimatedDialog',
       barrierDismissible: true,
-      barrierColor: AppTheme.barrierColor,
+      
       transitionDuration: AppUiConst.dialogAnimationDuration,
       context: context,
       pageBuilder: (context, anim1, anim2) {
@@ -20,12 +18,12 @@ class BottomAnimatedDialog {
               maxHeight: MediaQuery.of(context).size.height,
             ),
             width: double.infinity,
-            child: SingleChildScrollView(
-            child: child,
-            ),
             decoration: BoxDecoration(
               color: AppColors.white,
               borderRadius: BorderRadius.circular(40),
+            ),
+            child: SingleChildScrollView(
+            child: child,
             ),
           ),
         );
