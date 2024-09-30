@@ -28,6 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  app_ui:
+    path: packages/app_ui
   flutter:
     sdk: flutter
   tasks_repository:
