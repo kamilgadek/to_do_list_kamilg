@@ -1,6 +1,13 @@
-class Task {
-  Task({required this.description, required this.isDone});
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  String description;
-  bool isDone;
+part 'task.freezed.dart';
+
+@freezed
+class Task with _$Task {
+  const factory Task({
+    required String description,
+    required bool isDone,
+  }) = _Task;
+
+  factory Task.fromJson(Map<String, Object?> json) => _$TaskFromJson(json);
 }
