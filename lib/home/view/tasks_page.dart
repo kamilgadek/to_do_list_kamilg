@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:local_storage/local_storage.dart';
 import 'package:tasks_repository/tasks_repository.dart';
 import 'package:to_do_list_kamilg/home/home.dart';
 import 'package:app_ui/app_ui.dart';
 class TasksPage extends StatelessWidget {
-  const TasksPage({
+  TasksPage({
     super.key,
   });
+
+  final LocalStorage _localStorage = LocalStorage.instance;
 
   @override
   Widget build(BuildContext context) {
