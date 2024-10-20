@@ -36,17 +36,41 @@ class LocalStorage {
     return database;
   }
 
-  void addTask(
-    String,
-    content,
-  ) async {
+  Future<void> addTask(String content) async {
     final db = await database;
     await db.insert(
       _tasksTableName,
       {
         _tasksContentColumnName: content,
-        _tasksStatusColumnName: 0,
+        _tasksStatusColumnName: 0, // domyślnie zadanie nie jest ukonczone
       },
+    );
+  }
+
+  // Pobierz wszystkie zadania
+  Future<List<Map<String, dynamic>>> getTasks() async {
+    final db = await database;
+    return await db.query(_tasksTableName);
+  }
+
+  Future<void> editTask(int id, String newContent, int status) async {
+    final db = await database;
+    await db.update(
+      _tasksTableName,
+      {
+        _tasksContentColumnName: newContent,
+        _tasksStatusColumnName: status,
+      },
+      where: '$_tasksIdColumnName = ?',
+      whereArgs: [id],
+    );
+  }
+  Future <void> deleteTask(int id) async {
+    final db = await database;
+    await db.delete(
+      _tasksTableName,
+      where: '$_tasksIdColumnName = ?',
+      whereArgs: [id],
     );
   }
 }
