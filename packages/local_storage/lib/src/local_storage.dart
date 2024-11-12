@@ -23,6 +23,7 @@ class LocalStorage {
     final databasePath = join(databaseDirPath, 'tasks.db');
     final database = await openDatabase(
       databasePath,
+      version: 1,
       onCreate: (db, version) {
         db.execute('''
           CREATE TABLE $_tasksTableName(
