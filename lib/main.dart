@@ -10,11 +10,11 @@ void main() async {
   await localStorage.getDatabase();
 
   // Add task
-  await localStorage.addTask("Test Task");
+  await localStorage.addDocument(collection: 'Tasks', document: {});
   print("Task added.");
 
   // Get all tasks
-  final tasks = await localStorage.getTasks();
+  final tasks = await localStorage.getDocuments(collection: 'Tasks');
   print("All tasks: $tasks");
 
   // Edit task
@@ -24,7 +24,7 @@ void main() async {
     print("Task edited.");
 
     // Get tasks afrted edited
-    final updatedTasks = await localStorage.getTasks();
+    final updatedTasks = await localStorage.getDocuments(collection: 'Tasks');
     print("Tasks after edit: $updatedTasks");
 
     // Delete task
@@ -32,7 +32,7 @@ void main() async {
     print("Task deleted.");
 
     // Get tesks after deleted
-    final tasksAfterDelete = await localStorage.getTasks();
+    final tasksAfterDelete = await localStorage.getDocuments(collection: 'Tasks');
     print("Tasks after delete: $tasksAfterDelete");
   }
 

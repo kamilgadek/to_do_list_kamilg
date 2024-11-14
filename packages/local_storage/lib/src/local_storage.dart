@@ -37,21 +37,24 @@ class LocalStorage {
     return database;
   }
 
-  Future<void> addTask(String content) async {
+  /// Add new document to the table database
+  Future<void> addDocument({
+    required String collection,
+    required Map<String, dynamic> document,
+  }) async {
     final db = await database;
     await db.insert(
-      _tasksTableName,
-      {
-        _tasksContentColumnName: content,
-        _tasksStatusColumnName: 0, // domyślnie zadanie nie jest ukonczone
-      },
+      collection,
+      document,
     );
   }
 
   // Pobierz wszystkie zadania
-  Future<List<Map<String, dynamic>>> getTasks() async {
+  Future<List<Map<String, dynamic>>> getDocuments({
+    required String collection,
+  }) async {
     final db = await database;
-    return await db.query(_tasksTableName);
+    return await db.query(collection);
   }
 
   Future<void> editTask(int id, String newContent, int status) async {
@@ -66,7 +69,8 @@ class LocalStorage {
       whereArgs: [id],
     );
   }
-  Future <void> deleteTask(int id) async {
+
+  Future<void> deleteTask(int id) async {
     final db = await database;
     await db.delete(
       _tasksTableName,
