@@ -4,17 +4,20 @@ import 'package:to_do_list_kamilg/app/app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final localStorage = LocalStorage.instance;
+  final localStorage = LocalStorage(databaseName: 'tasks.db');
 
   // Initialize the database
   await localStorage.getDatabase();
 
   // Add task
-  await localStorage.addDocument(collection: 'Tasks', document: {});
+  await localStorage.addDocument(collection: 'tasks', document: {
+    'content': 'Buy milk',
+    'status': 0
+  });
   print("Task added.");
 
   // Get all tasks
-  final tasks = await localStorage.getDocuments(collection: 'Tasks');
+  final tasks = await localStorage.getDocuments(collection: 'tasks');
   print("All tasks: $tasks");
 
   // Edit task
@@ -24,7 +27,7 @@ void main() async {
     print("Task edited.");
 
     // Get tasks afrted edited
-    final updatedTasks = await localStorage.getDocuments(collection: 'Tasks');
+    final updatedTasks = await localStorage.getDocuments(collection: 'tasks');
     print("Tasks after edit: $updatedTasks");
 
     // Delete task
@@ -32,7 +35,7 @@ void main() async {
     print("Task deleted.");
 
     // Get tesks after deleted
-    final tasksAfterDelete = await localStorage.getDocuments(collection: 'Tasks');
+    final tasksAfterDelete = await localStorage.getDocuments(collection: 'tasks');
     print("Tasks after delete: $tasksAfterDelete");
   }
 

@@ -2,15 +2,10 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class LocalStorage {
-  static Database? _db;
-  static final LocalStorage instance = LocalStorage._constructor();
-
-  final String _tasksTableName = "tasks";
-  final String _tasksIdColumnName = "id";
-  final String _tasksContentColumnName = "content";
-  final String _tasksStatusColumnName = "status";
-
-  LocalStorage._constructor();
+  final String databaseName;
+  Database? _db;
+  // constructor
+  LocalStorage({required this.databaseName});
 
   Future<Database> get database async {
     if (_db != null) return _db!;
@@ -26,10 +21,10 @@ class LocalStorage {
       version: 1,
       onCreate: (db, version) {
         db.execute('''
-          CREATE TABLE $_tasksTableName(
-            $_tasksIdColumnName INTEGER PRIMARY KEY,
-            $_tasksContentColumnName TEXT NOT NULL,
-            $_tasksStatusColumnName INTEGER NOT NULL
+          CREATE TABLE tasks(
+            id INTEGER PRIMARY KEY,
+            conctent TEXT NOT NULL,
+            status INTEGER NOT NULL
           )
           ''');
       },
@@ -60,12 +55,12 @@ class LocalStorage {
   Future<void> editTask(int id, String newContent, int status) async {
     final db = await database;
     await db.update(
-      _tasksTableName,
+       'tasks',
       {
-        _tasksContentColumnName: newContent,
-        _tasksStatusColumnName: status,
+        'content': newContent,
+        'status' : status,
       },
-      where: '$_tasksIdColumnName = ?',
+      where: 'id = ?',
       whereArgs: [id],
     );
   }
@@ -73,8 +68,8 @@ class LocalStorage {
   Future<void> deleteTask(int id) async {
     final db = await database;
     await db.delete(
-      _tasksTableName,
-      where: '$_tasksIdColumnName = ?',
+      'tasks',
+      where: 'id = ?',
       whereArgs: [id],
     );
   }
