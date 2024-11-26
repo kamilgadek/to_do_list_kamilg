@@ -2,15 +2,34 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class LocalStorage {
-  final String databaseName;
-  Database? _db;
+  
+  static Database? _db;
+  static final LocalStorage instance = LocalStorage._constructor();
   // constructor
-  LocalStorage({required this.databaseName});
+  LocalStorage._constructor();
 
   Future<Database> get database async {
     if (_db != null) return _db!;
     _db = await getDatabase();
     return _db!;
+  }
+
+  Future<void> createDatabase({
+    required String databaseName,
+    required String tableName,
+    required String tableSchema,
+  }) async {
+    final databaseDirPath = await getDatabasesPath();
+    final databasePath = join(databaseDirPath, databaseName);
+
+    _db = await openDatabase(databasePath, version: 1, onCreate: (db, version) {
+       db.execute('''
+          CREATE TABLE $tableName(
+            $tableSchema
+          )
+          ''');
+    });
+
   }
 
   Future<Database> getDatabase() async {
