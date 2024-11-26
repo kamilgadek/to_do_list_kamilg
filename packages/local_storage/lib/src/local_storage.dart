@@ -2,20 +2,34 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class LocalStorage {
+  
   static Database? _db;
   static final LocalStorage instance = LocalStorage._constructor();
-
-  final String _tasksTableName = "tasks";
-  final String _tasksIdColumnName = "id";
-  final String _tasksContentColumnName = "content";
-  final String _tasksStatusColumnName = "status";
-
+  // constructor
   LocalStorage._constructor();
 
   Future<Database> get database async {
     if (_db != null) return _db!;
     _db = await getDatabase();
     return _db!;
+  }
+
+  Future<void> createDatabase({
+    required String databaseName,
+    required String tableName,
+    required String tableSchema,
+  }) async {
+    final databaseDirPath = await getDatabasesPath();
+    final databasePath = join(databaseDirPath, databaseName);
+
+    _db = await openDatabase(databasePath, version: 1, onCreate: (db, version) {
+       db.execute('''
+          CREATE TABLE $tableName(
+            $tableSchema
+          )
+          ''');
+    });
+
   }
 
   Future<Database> getDatabase() async {
@@ -26,10 +40,10 @@ class LocalStorage {
       version: 1,
       onCreate: (db, version) {
         db.execute('''
-          CREATE TABLE $_tasksTableName(
-            $_tasksIdColumnName INTEGER PRIMARY KEY,
-            $_tasksContentColumnName TEXT NOT NULL,
-            $_tasksStatusColumnName INTEGER NOT NULL
+          CREATE TABLE tasks(
+            id INTEGER PRIMARY KEY,
+            conctent TEXT NOT NULL,
+            status INTEGER NOT NULL
           )
           ''');
       },
@@ -37,40 +51,44 @@ class LocalStorage {
     return database;
   }
 
-  Future<void> addTask(String content) async {
+  /// Add new document to the table database
+  Future<void> addDocument({
+    required String collection,
+    required Map<String, dynamic> document,
+  }) async {
     final db = await database;
     await db.insert(
-      _tasksTableName,
-      {
-        _tasksContentColumnName: content,
-        _tasksStatusColumnName: 0, // domyślnie zadanie nie jest ukonczone
-      },
+      collection,
+      document,
     );
   }
 
   // Pobierz wszystkie zadania
-  Future<List<Map<String, dynamic>>> getTasks() async {
+  Future<List<Map<String, dynamic>>> getDocuments({
+    required String collection,
+  }) async {
     final db = await database;
-    return await db.query(_tasksTableName);
+    return await db.query(collection);
   }
 
   Future<void> editTask(int id, String newContent, int status) async {
     final db = await database;
     await db.update(
-      _tasksTableName,
+       'tasks',
       {
-        _tasksContentColumnName: newContent,
-        _tasksStatusColumnName: status,
+        'content': newContent,
+        'status' : status,
       },
-      where: '$_tasksIdColumnName = ?',
+      where: 'id = ?',
       whereArgs: [id],
     );
   }
-  Future <void> deleteTask(int id) async {
+
+  Future<void> deleteTask(int id) async {
     final db = await database;
     await db.delete(
-      _tasksTableName,
-      where: '$_tasksIdColumnName = ?',
+      'tasks',
+      where: 'id = ?',
       whereArgs: [id],
     );
   }

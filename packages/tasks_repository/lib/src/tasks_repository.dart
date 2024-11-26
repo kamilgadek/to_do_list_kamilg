@@ -1,24 +1,26 @@
 import 'package:local_storage/local_storage.dart';
 import 'package:tasks_repository/tasks_repository.dart';
 class TasksRepository {
-  final LocalStorage _localStorage = LocalStorage.instance;
+  final localStorage  = LocalStorage(databaseName: 'tasks.db');
 
   // Pobiera wszystkie zadania z bazy danych
   Future<List<Map<String, dynamic>>> getTasks() async {
-    return await _localStorage.getTasks();
+    return await localStorage.getDocuments(collection: 'Tasks');
   }
 
   // Dodaje nowe zadanie do bazy danych
   Future<void> addTask(String content) async {
-    await _localStorage.addTask(content);
+    await localStorage.addDocument(collection: 'Tasks', document: {
+      
+    });
   }
 
   // Edytuje istniejące zadanie w bazie danych
   Future<void> editTask(int id, String newContent, int status) async {
-    await _localStorage.editTask(id, newContent, status);
+    await localStorage.editTask(id, newContent, status);
   }
 
   Future<void> deleteTask(int taskId) async {
-    await _localStorage.deleteTask(taskId);
+    await localStorage.deleteTask(taskId);
   }
 }
