@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_repository/tasks_repository.dart';
 
-
 class TaskCard extends StatelessWidget {
-  const TaskCard(
-     {
-    super.key, required this.task,
+  const TaskCard({
+    super.key,
+    required this.task,
   });
 
   final Task task;
@@ -28,12 +27,15 @@ class TaskCard extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           Text(
-            task.isDone ? "Completed" : "Incomplete", 
+            // TODO(Kamil): what is that??
+            task.isTaskDone ? "Completed" : "Incomplete",
             style: TextStyle(
               fontSize: 16,
-              color: task.isDone ? Colors.green : Colors.red,
+              color: task.isTaskDone ? Colors.green : Colors.red,
             ),
           ),
         ],
@@ -41,4 +43,3 @@ class TaskCard extends StatelessWidget {
     );
   }
 }
-

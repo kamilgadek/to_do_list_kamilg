@@ -5,40 +5,49 @@ import 'package:tasks_repository/tasks_repository.dart';
 class TasksDevData {
   static List<Task> tasks = [
     const Task(
+      id: '1',
       description: 'Learn Flutter',
-      isDone: true,
+      isDone: 0,
     ),
     const Task(
+      id: '2',
       description: 'Clean room',
-      isDone: false,
+      isDone: 0,
     ),
     const Task(
+      id: '3',
       description: 'Go to the gym',
-      isDone: true,
+      isDone: 0,
     ),
     const Task(
+      id: '4',
       description: 'Learn Flutter',
-      isDone: true,
+      isDone: 0,
     ),
     const Task(
+      id: '5',
       description: 'Clean room',
-      isDone: false,
+      isDone: 0,
     ),
     const Task(
+      id: '6',
       description: 'Go to the gym',
-      isDone: true,
+      isDone: 0,
     ),
     const Task(
+      id: '7',
       description: 'Learn Flutter',
-      isDone: true,
+      isDone: 0,
     ),
     const Task(
+      id: '8',
       description: 'Clean room',
-      isDone: false,
+      isDone: 0,
     ),
     const Task(
+      id: '9',
       description: 'Go to the gym',
-      isDone: true,
+      isDone: 0,
     ),
   ];
 }

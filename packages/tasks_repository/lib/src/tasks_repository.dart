@@ -1,26 +1,58 @@
 import 'package:local_storage/local_storage.dart';
 import 'package:tasks_repository/tasks_repository.dart';
+
+// TODO(kamil): move this exception class to separate file
+class OpenDatabaseError implements Exception {}
+
 class TasksRepository {
-  final localStorage  = LocalStorage(databaseName: 'tasks.db');
+  TasksRepository({required LocalStorage localStorage}) : _localStorage = localStorage;
 
-  // Pobiera wszystkie zadania z bazy danych
-  Future<List<Map<String, dynamic>>> getTasks() async {
-    return await localStorage.getDocuments(collection: 'Tasks');
+  final LocalStorage _localStorage;
+
+  static const dbName = 'tasks.db';
+  static const tableName = 'tasks';
+
+  /// Database instance
+  late Database _database;
+
+  /// based on Task model serialization
+  static const tableSchema = '''
+    id TEXT PRIMARY KEY,
+    description TEXT NOT NULL,
+    isDone INTEGER NOT NULL
+  ''';
+
+  Future<void> init() async {
+    try {
+      _database = await _localStorage.getDatabase(
+        databaseName: dbName,
+        tableName: tableName,
+        tableSchema: tableSchema,
+      );
+    } catch (_) {
+      throw OpenDatabaseError();
+    }
   }
 
-  // Dodaje nowe zadanie do bazy danych
-  Future<void> addTask(String content) async {
-    await localStorage.addDocument(collection: 'Tasks', document: {
-      
-    });
+  Future<void> addTask(
+    Task task,
+  ) async {
+    await _localStorage.add(
+      table: tableName,
+      db: _database,
+      document: task.toJson(),
+    );
   }
 
-  // Edytuje istniejące zadanie w bazie danych
-  Future<void> editTask(int id, String newContent, int status) async {
-    await localStorage.editTask(id, newContent, status);
-  }
-
-  Future<void> deleteTask(int taskId) async {
-    await localStorage.deleteTask(taskId);
+  Future<List<Task>> getTasks() async {
+    final list = await _localStorage.get(
+      table: tableName,
+      db: _database,
+    );
+    return list
+        .map(
+          (e) => Task.fromJson(e),
+        )
+        .toList();
   }
 }

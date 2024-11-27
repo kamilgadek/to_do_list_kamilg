@@ -2,19 +2,10 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class LocalStorage {
-  
-  static Database? _db;
-  static final LocalStorage instance = LocalStorage._constructor();
-  // constructor
-  LocalStorage._constructor();
+  const LocalStorage();
 
-  Future<Database> get database async {
-    if (_db != null) return _db!;
-    _db = await getDatabase();
-    return _db!;
-  }
-
-  Future<void> createDatabase({
+  /// Return the instance of Database
+  Future<Database> getDatabase({
     required String databaseName,
     required String tableName,
     required String tableSchema,
@@ -22,74 +13,66 @@ class LocalStorage {
     final databaseDirPath = await getDatabasesPath();
     final databasePath = join(databaseDirPath, databaseName);
 
-    _db = await openDatabase(databasePath, version: 1, onCreate: (db, version) {
-       db.execute('''
-          CREATE TABLE $tableName(
-            $tableSchema
-          )
-          ''');
-    });
-
-  }
-
-  Future<Database> getDatabase() async {
-    final databaseDirPath = await getDatabasesPath();
-    final databasePath = join(databaseDirPath, 'tasks.db');
-    final database = await openDatabase(
+    final db = await openDatabase(
       databasePath,
       version: 1,
       onCreate: (db, version) {
         db.execute('''
-          CREATE TABLE tasks(
-            id INTEGER PRIMARY KEY,
-            conctent TEXT NOT NULL,
-            status INTEGER NOT NULL
+          CREATE TABLE $tableName(
+            $tableSchema
           )
           ''');
       },
     );
-    return database;
+    return db;
   }
 
   /// Add new document to the table database
-  Future<void> addDocument({
-    required String collection,
+  Future<void> add({
+    required String table,
+    required Database db,
     required Map<String, dynamic> document,
   }) async {
-    final db = await database;
     await db.insert(
-      collection,
+      table,
       document,
     );
   }
 
-  // Pobierz wszystkie zadania
-  Future<List<Map<String, dynamic>>> getDocuments({
-    required String collection,
+  /// get all documents from the table database
+  Future<List<Map<String, dynamic>>> get({
+    required Database db,
+    required String table,
   }) async {
-    final db = await database;
-    return await db.query(collection);
+    return await db.query(table);
   }
 
-  Future<void> editTask(int id, String newContent, int status) async {
-    final db = await database;
+  /// edit document in the table database by `where` condition
+  Future<void> edit({
+    required Database db,
+    required String table,
+    required String wherePropertyName,
+    required String wherePropertyValue,
+    required Map<String, dynamic> document,
+  }) async {
     await db.update(
-       'tasks',
-      {
-        'content': newContent,
-        'status' : status,
-      },
-      where: 'id = ?',
-      whereArgs: [id],
+      table,
+      document,
+      where: '$wherePropertyName = ?',
+      whereArgs: [wherePropertyValue],
     );
   }
 
-  Future<void> deleteTask(int id) async {
-    final db = await database;
+  Future<void> delete({
+    required Database db,
+    required String table,
+    required String wherePropertyName,
+    required String wherePropertyValue,
+  }) async {
     await db.delete(
-      'tasks',
-      where: 'id = ?',
-      whereArgs: [id],
+      table,
+      where: '$wherePropertyName = ?',
+      whereArgs: [wherePropertyValue],
     );
   }
 }

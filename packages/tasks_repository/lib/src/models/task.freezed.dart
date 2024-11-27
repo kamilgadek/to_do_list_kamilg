@@ -20,11 +20,16 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Task {
+  String get id => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  bool get isDone => throw _privateConstructorUsedError;
+  int get isDone => throw _privateConstructorUsedError;
 
+  /// Serializes this Task to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Task
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TaskCopyWith<Task> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -33,7 +38,7 @@ abstract class $TaskCopyWith<$Res> {
   factory $TaskCopyWith(Task value, $Res Function(Task) then) =
       _$TaskCopyWithImpl<$Res, Task>;
   @useResult
-  $Res call({String description, bool isDone});
+  $Res call({String id, String description, int isDone});
 }
 
 /// @nodoc
@@ -46,13 +51,20 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Task
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? description = null,
     Object? isDone = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -60,7 +72,7 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
       isDone: null == isDone
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as int,
     ) as $Val);
   }
 }
@@ -72,7 +84,7 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
       __$$TaskImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String description, bool isDone});
+  $Res call({String id, String description, int isDone});
 }
 
 /// @nodoc
@@ -82,13 +94,20 @@ class __$$TaskImplCopyWithImpl<$Res>
   __$$TaskImplCopyWithImpl(_$TaskImpl _value, $Res Function(_$TaskImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Task
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? description = null,
     Object? isDone = null,
   }) {
     return _then(_$TaskImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -96,27 +115,31 @@ class __$$TaskImplCopyWithImpl<$Res>
       isDone: null == isDone
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as int,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TaskImpl implements _Task {
-  const _$TaskImpl({required this.description, required this.isDone});
+class _$TaskImpl extends _Task {
+  const _$TaskImpl(
+      {required this.id, required this.description, required this.isDone})
+      : super._();
 
   factory _$TaskImpl.fromJson(Map<String, dynamic> json) =>
       _$$TaskImplFromJson(json);
 
   @override
+  final String id;
+  @override
   final String description;
   @override
-  final bool isDone;
+  final int isDone;
 
   @override
   String toString() {
-    return 'Task(description: $description, isDone: $isDone)';
+    return 'Task(id: $id, description: $description, isDone: $isDone)';
   }
 
   @override
@@ -124,16 +147,19 @@ class _$TaskImpl implements _Task {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TaskImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.isDone, isDone) || other.isDone == isDone));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, description, isDone);
+  int get hashCode => Object.hash(runtimeType, id, description, isDone);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Task
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TaskImplCopyWith<_$TaskImpl> get copyWith =>
@@ -147,19 +173,26 @@ class _$TaskImpl implements _Task {
   }
 }
 
-abstract class _Task implements Task {
+abstract class _Task extends Task {
   const factory _Task(
-      {required final String description,
-      required final bool isDone}) = _$TaskImpl;
+      {required final String id,
+      required final String description,
+      required final int isDone}) = _$TaskImpl;
+  const _Task._() : super._();
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$TaskImpl.fromJson;
 
   @override
+  String get id;
+  @override
   String get description;
   @override
-  bool get isDone;
+  int get isDone;
+
+  /// Create a copy of Task
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TaskImplCopyWith<_$TaskImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
