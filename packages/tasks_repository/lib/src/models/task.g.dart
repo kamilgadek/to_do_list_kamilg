@@ -7,12 +7,14 @@ part of 'task.dart';
 // **************************************************************************
 
 _$TaskImpl _$$TaskImplFromJson(Map<String, dynamic> json) => _$TaskImpl(
+      id: json['id'] as String,
       description: json['description'] as String,
       isDone: json['isDone'] as bool,
     );
 
 Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'description': instance.description,
       'isDone': instance.isDone,
     };
